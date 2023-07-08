@@ -1,20 +1,27 @@
+import { FC } from 'react'
 import St from 'styles/home/Home.style'
-import { ReactComponent as SolanaIcon } from 'assets/icons/Solana.svg'
-import { ReactComponent as EthereumIcon } from 'assets/icons/Ethereum.svg'
-import { ReactComponent as BnBIcon } from 'assets/icons/BnB.svg.svg'
+import CoinToIcon from 'components/common/CoinToIcon'
+import { ExchangeCoinType } from 'types/exchange/exchange.type'
+import { commaFormat } from 'utils/formatUtil'
+import { CoinNameToUnit } from 'static/coinNameToUnit'
 
-const MyCoinListItem = () => {
+interface MyCoinListItemProps {
+  coinName: ExchangeCoinType
+  amount: number
+}
+
+const MyCoinListItem: FC<MyCoinListItemProps> = ({ coinName, amount }) => {
   return (
     <St.MyCoinListItem>
       <St.SymbolInfo>
         <St.CoinIconWrapper>
-          <SolanaIcon />
+          <CoinToIcon coinName={coinName} />
         </St.CoinIconWrapper>
-        <St.CoinName>Solana</St.CoinName>
+        <St.CoinName>{coinName}</St.CoinName>
       </St.SymbolInfo>
       <St.ExchangeAmount>
-        <span className={'amount'}>1,211,023,512.34</span>
-        <span className={'unit'}>SOL</span>
+        <span className={'amount'}>{commaFormat(amount)}</span>
+        <span className={'unit'}>{CoinNameToUnit[coinName]}</span>
       </St.ExchangeAmount>
     </St.MyCoinListItem>
   )

@@ -1,19 +1,21 @@
 import St from 'styles/home/Home.style'
 import MyCoinListItem from './MyCoinListItem'
-import { ReactComponent as SolanaIcon } from 'assets/icons/Solana.svg'
-import { ReactComponent as EthereumIcon } from 'assets/icons/Ethereum.svg'
-import { ReactComponent as BnBIcon } from 'assets/icons/BnB.svg.svg'
+import { useAppSelector } from 'hooks/redux/useAppSelector'
 
 const MyCoinList = () => {
+  const { coinList } = useAppSelector((state) => state.exchangeReducer)
   return (
     <St.MyCoinListContainer>
       <h2>지갑</h2>
       <hr />
 
       <St.MyCoinList>
-        <MyCoinListItem></MyCoinListItem>
-        <MyCoinListItem></MyCoinListItem>
-        <MyCoinListItem></MyCoinListItem>
+        {coinList.map((item) => {
+          return <MyCoinListItem key={item.id} coinName={item.name} amount={item.amount} />
+        })}
+        {/*<MyCoinListItem></MyCoinListItem>*/}
+        {/*<MyCoinListItem></MyCoinListItem>*/}
+        {/*<MyCoinListItem></MyCoinListItem>*/}
       </St.MyCoinList>
     </St.MyCoinListContainer>
   )

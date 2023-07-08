@@ -1,3 +1,5 @@
+import { useAppDispatch } from 'hooks/redux/useAppDispatch'
+import { useEffect } from 'react'
 import St from 'styles/home/Home.style'
 import Input from 'components/common/inputs/Input'
 import { ReactComponent as SwapIcon } from 'assets/icons/SwapIcon.svg'
@@ -5,8 +7,10 @@ import { ReactComponent as SolanaIcon } from 'assets/icons/Solana.svg'
 import { ReactComponent as EthereumIcon } from 'assets/icons/Ethereum.svg'
 import { ReactComponent as ArrowRightIcon } from 'assets/icons/ArrowRight.svg'
 import Button from 'components/common/buttons/Button'
-
+import { currencyExchange } from '../../../store/exchange/exchangeSlice'
 const ExchangeForm = () => {
+  const dispatch = useAppDispatch()
+
   return (
     <St.ExchangeFormContainer>
       <St.InputWrapper>
