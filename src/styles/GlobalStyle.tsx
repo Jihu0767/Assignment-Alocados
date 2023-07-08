@@ -1,6 +1,16 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Noto Sans KR';
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-style: normal;
+  }
   body {
     position: relative;
   }
@@ -99,6 +109,7 @@ const GlobalStyle = createGlobalStyle`
     border: 0;
     box-sizing: border-box;
     color: #444;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   article,
   aside,
@@ -135,6 +146,6 @@ const GlobalStyle = createGlobalStyle`
   li {
     list-style: none;
   }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

@@ -1,5 +1,12 @@
-const HomeTemplate = () => {
-  return <>HomeTemplate</>;
-};
+import St from 'styles/home/Home.style'
+import MyCoinList from './MyCoinList'
 
-export default HomeTemplate;
+const HomeTemplate = () => {
+  return (
+    <St.HomeContainer>
+      <MyCoinList />
+    </St.HomeContainer>
+  )
+}
+
+export default HomeTemplate
