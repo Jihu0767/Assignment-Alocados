@@ -22,7 +22,7 @@ const St = {
     font-weight: 500;
     padding: 15px;
     border-radius: ${(props) => props.theme.radius.s12};
-    color: ${(props) => props.theme.colors.stale700};
+    color: ${(props) => props.theme.colors.shade700};
     background-color: ${(props) => props.theme.colors.white};
     
       

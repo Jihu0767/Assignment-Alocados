@@ -109,7 +109,7 @@ const GlobalStyle = createGlobalStyle`
     border: 0;
     box-sizing: border-box;
     color: #444;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: Poppins, Noto Sans KR, serif;
   }
   article,
   aside,

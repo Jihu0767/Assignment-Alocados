@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import St from 'styles/common/Header.style'
 import Navigation from 'static/navigation'
-import { ReactComponent as HeaderLogo } from 'assets/logos/headerLogo.svg'
+import { ReactComponent as HeaderLogo } from 'assets/icons/headerLogo.svg'
 const Header = () => {
   const { pathname } = useLocation()
   return (
