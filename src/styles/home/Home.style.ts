@@ -6,6 +6,7 @@ const St = {
     display: flex;
     gap: ${(props) => props.theme.spacing.s16};
   `,
+  // -------------- 지갑 --------------
   MyCoinListContainer: styled.article`
     flex: 1 1 30%;
     border-radius: ${(props) => props.theme.radius.s12};
@@ -26,7 +27,6 @@ const St = {
       margin: ${(props) => props.theme.spacing.s16} 0;
     }
   `,
-  // -------------- 지갑 --------------
   MyCoinList: styled.ul`
     display: flex;
     flex-direction: column;
