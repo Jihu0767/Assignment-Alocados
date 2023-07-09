@@ -1,7 +1,8 @@
-import styled, { css } from 'styled-components'
 import React, { forwardRef, InputHTMLAttributes, memo, ReactNode, Ref } from 'react'
+import styled, { css } from 'styled-components'
 
 type InputProps = {
+  wrapperClassName?: string
   labelText?: string | ReactNode
   isRequireLabel?: boolean
   isValid?: boolean
@@ -19,12 +20,13 @@ const Input = (
     isRequireLabel,
     isValid,
     invalidText,
+    wrapperClassName,
     ...rest
   }: InputHTMLAttributes<HTMLInputElement> & InputProps,
   ref?: Ref<HTMLInputElement>
 ) => {
   return (
-    <St.InputContainer>
+    <St.InputContainer className={wrapperClassName}>
       <St.Label htmlFor={id} $isRequireLabel={isRequireLabel}>
         {labelText}
       </St.Label>

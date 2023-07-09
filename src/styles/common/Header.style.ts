@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const St = {
   HeaderContainer: styled.header`
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     height: 120px;
     padding: 32px;

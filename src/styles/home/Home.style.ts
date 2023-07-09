@@ -30,7 +30,7 @@ const St = {
   MyCoinList: styled.ul`
     display: flex;
     flex-direction: column;
-    gap: ${(props) => props.theme.spacing.s24};
+    gap: ${(props) => props.theme.spacing.s32};
   `,
   MyCoinListItem: styled.li``,
   SymbolInfo: styled.div`
@@ -69,6 +69,21 @@ const St = {
     flex: 1 1 70%;
   `,
   InputWrapper: styled.div`
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    gap: ${(props) => props.theme.spacing.s16};
+    & > .amount-input {
+      flex: 1;
+    }
+
+    & > .dropdown {
+      flex-basis: 25%;
+      flex-grow: 0;
+    }
+  `,
+  InfoWrapper: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

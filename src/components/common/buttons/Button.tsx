@@ -1,41 +1,28 @@
-import React, { memo, PropsWithChildren } from 'react'
+import React, { forwardRef, memo, PropsWithChildren, Ref } from 'react'
 import styled from 'styled-components'
 import { ColorsType } from 'styles/GlobalTheme'
 
 type ButtonProps = PropsWithChildren<{
   type?: 'button' | 'submit' | 'reset'
   className?: string
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
   background?: ColorsType
 }>
 
-const Button = ({
-  type = 'button',
-  className,
-  onClick,
-  children,
-  disabled,
-  background = 'primary100',
-  ...rest
-}: ButtonProps) => {
+const Button = (
+  { type = 'button', className, children, disabled, background = 'primary100', ...rest }: ButtonProps,
+  ref?: Ref<HTMLButtonElement>
+) => {
   return (
     <>
-      <St.Button
-        type={type}
-        className={className}
-        onClick={onClick}
-        disabled={disabled}
-        $background={background}
-        {...rest}
-      >
+      <St.Button type={type} className={className} disabled={disabled} $background={background} ref={ref} {...rest}>
         {children}
       </St.Button>
     </>
   )
 }
 
-export default memo(Button)
+export default memo(forwardRef(Button))
 
 const St = {
   Button: styled.button<{ $background: ColorsType }>`
