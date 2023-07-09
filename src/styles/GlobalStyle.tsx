@@ -1,4 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
+import { GlobalTheme } from './GlobalTheme'
+
+const {
+  colors: { shade900 },
+} = GlobalTheme
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -108,7 +113,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    color: #444;
+    color: ${shade900};
     font-family: Poppins, Noto Sans KR, serif;
   }
   article,

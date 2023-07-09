@@ -3,14 +3,10 @@ import Button from '../../components/common/buttons/Button'
 
 const St = {
   HomeContainer: styled.section`
-    display: flex;
-    gap: ${(props) => props.theme.spacing.s16};
-  `,
-  HomeTitle: styled.h1`
-    margin-bottom: ${(props) => props.theme.spacing.s24};
-    font-size: 22px;
-    font-weight: 700;
-    color: ${(props) => props.theme.colors.shade900};
+    & > div {
+      display: flex;
+      gap: ${(props) => props.theme.spacing.s16};
+    }
   `,
   // -------------- 지갑 --------------
   MyCoinListContainer: styled.article`
@@ -106,27 +102,6 @@ const St = {
     width: 100%;
     height: 56px;
     margin: ${(props) => `${props.theme.spacing.s32} 0 ${props.theme.spacing.s16} 0`}}; 
-  `,
-  RecentlyRecordsWrapper: styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: ${(props) => `${props.theme.spacing.s8} ${props.theme.spacing.s16}`};
-    border-radius: ${(props) => props.theme.radius.s12};
-    background-color: ${(props) => props.theme.colors.shade100};
-  `,
-  RecentlyRecordDate: styled.div``,
-  RecentlyRecordCoinsWrpaper: styled.div`
-    display: flex;
-    align-items: center;
-    gap: ${(props) => props.theme.spacing.s32};
-  `,
-  RecentlyRecordCoin: styled.div`
-    display: flex;
-    align-items: center;
-    gap: ${(props) => props.theme.spacing.s8};
-    font-size: 18px;
-    font-weight: 600;
   `,
   ExchangeNoticeContainer: styled.div`
     display: flex;

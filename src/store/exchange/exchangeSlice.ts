@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ExchangeCoinType, ExchangeUnitType } from '../../types/exchange/exchange.type'
 import { ExchangeRates } from 'static/exchangeRate'
 
-interface ExchangeHistoriesType {
+export interface ExchangeHistoriesType {
   date: string
   sourceCoinName: ExchangeCoinType
   sourceCoinAmount: number

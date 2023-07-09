@@ -1,5 +1,5 @@
 export type NavTitle = '환전하기' | '거래내역'
-export type NavLink = '/' | '/transDetail'
+export type NavLink = '/' | '/transHistories'
 
 interface NavigationType {
   id: number
@@ -16,7 +16,7 @@ const Navigation: readonly NavigationType[] = Object.freeze([
   {
     id: 1,
     title: '거래내역',
-    link: '/transDetail',
+    link: '/transHistories',
   },
 ])
 

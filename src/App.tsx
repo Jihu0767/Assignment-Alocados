@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalTheme } from 'styles/GlobalTheme'
 import Layout from 'components/Layout/Layout'
 import Home from 'pages/Home'
-import TransDetail from 'pages/TransDetail'
+import TransHistories from 'pages/TransHistories'
 import Header from './components/common/Header'
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/transDetail" element={<TransDetail />} />
+            <Route path="/transHistories" element={<TransHistories />} />
           </Routes>
         </Layout>
       </ThemeProvider>

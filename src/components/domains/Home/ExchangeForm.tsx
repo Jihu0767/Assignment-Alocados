@@ -11,7 +11,7 @@ import useInput from 'hooks/useInput'
 import { ExchangeRates } from 'static/exchangeRate'
 import { useAppDispatch } from 'hooks/redux/useAppDispatch'
 import { currencyExchange, addHistory, setVisibleExchangeNotice } from 'store/exchange/exchangeSlice'
-import { getNowDate } from '../../../utils/dateUtil'
+import { getNowDate } from 'utils/dateUtil'
 
 const ExchangeForm = () => {
   const dispatch = useAppDispatch()
