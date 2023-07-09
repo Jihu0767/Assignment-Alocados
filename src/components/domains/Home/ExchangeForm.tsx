@@ -1,22 +1,22 @@
+import React, { useMemo, useState } from 'react'
 import St from 'styles/home/Home.style'
 import Input from 'components/common/inputs/Input'
 import { ReactComponent as SwapIcon } from 'assets/icons/SwapIcon.svg'
-import { ReactComponent as DropDownIcon } from 'assets/icons/DropDownIcon.svg'
 import RecentlyExchangeRecord from './RecentlyExchangeRecord'
 import DropDown from 'components/common/select/DropDown'
-import React, { useMemo, useState } from 'react'
 import { useAppSelector } from 'hooks/redux/useAppSelector'
-import CoinToIcon from '../../common/CoinToIcon'
+import CoinToIcon from 'components/common/CoinToIcon'
 import { ExchangeCoinType } from 'types/exchange/exchange.type'
 import useInput from 'hooks/useInput'
-import { ExchangeRates } from '../../../static/exchangeRate'
-import { useAppDispatch } from '../../../hooks/redux/useAppDispatch'
-import { currencyExchange } from '../../../store/exchange/exchangeSlice'
+import { ExchangeRates } from 'static/exchangeRate'
+import { useAppDispatch } from 'hooks/redux/useAppDispatch'
+import { currencyExchange, addHistory, setVisibleExchangeNotice } from 'store/exchange/exchangeSlice'
+import { getNowDate } from '../../../utils/dateUtil'
 
 const ExchangeForm = () => {
   const dispatch = useAppDispatch()
-
   const { coinList } = useAppSelector((state) => state.exchangeReducer)
+
   const [selectedSourceCoin, setSelectedSourceCoin] = useState<ExchangeCoinType>(coinList[0].name)
   const [selectedTargetCoin, setSelectedTargetCoin] = useState<ExchangeCoinType>(coinList[1].name)
   const [sourceCoinAmount, setSourceCoinAmount, handleSourceCoinAmount] = useInput('0')
@@ -40,6 +40,17 @@ const ExchangeForm = () => {
       })
     )
 
+    dispatch(
+      addHistory({
+        date: getNowDate(),
+        sourceCoinName: selectedSourceCoin,
+        sourceCoinAmount: Number(sourceCoinAmount),
+        targetCoinName: selectedTargetCoin,
+        resultAmount: exchangeResultAmount,
+      })
+    )
+
+    dispatch(setVisibleExchangeNotice())
     setSourceCoinAmount('0')
   }
 
@@ -74,11 +85,16 @@ const ExchangeForm = () => {
    * 환전될 갯수가 1보다 작은경우
    * 코인 선택이 안된경우
    * 입력된 값이 없는 경우
+   * 선택된 코인이 같은 경우
    */
   const buttonValidation = useMemo(() => {
     const targetCoinQty = coinList.filter((item) => item.name === selectedSourceCoin)[0].amount
+    const sameSelectedCoin = selectedSourceCoin !== selectedTargetCoin
     const isValidButton =
-      sourceCoinAmount !== '' && exchangeResultAmount >= 1 && targetCoinQty > Number(sourceCoinAmount)
+      sourceCoinAmount !== '' &&
+      exchangeResultAmount >= 1 &&
+      targetCoinQty >= Number(sourceCoinAmount) &&
+      sameSelectedCoin
 
     return !isValidButton
   }, [sourceCoinAmount])
@@ -133,21 +149,19 @@ const ExchangeForm = () => {
             <DropDown.Menu>
               {coinList.map((item) => {
                 return (
-                  <>
-                    <DropDown.Item key={item.id} value={item.name}>
-                      <St.DropDownItemInfo>
-                        <CoinToIcon coinName={item.name} />
-                        {item.name}
-                      </St.DropDownItemInfo>
-                    </DropDown.Item>
-                  </>
+                  <DropDown.Item key={item.id} value={item.name}>
+                    <St.DropDownItemInfo>
+                      <CoinToIcon coinName={item.name} />
+                      {item.name}
+                    </St.DropDownItemInfo>
+                  </DropDown.Item>
                 )
               })}
             </DropDown.Menu>
           </DropDown>
         </St.InputWrapper>
       </St.InfoWrapper>
-      <St.ExchangeButton type={'button'} onClick={submitExchange} disabled={buttonValidation}>
+      <St.ExchangeButton type={'button'} background={'primary100'} onClick={submitExchange} disabled={buttonValidation}>
         환전
       </St.ExchangeButton>
       <RecentlyExchangeRecord />

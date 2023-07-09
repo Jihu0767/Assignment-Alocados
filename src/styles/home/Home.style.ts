@@ -103,6 +103,7 @@ const St = {
     gap: ${(props) => props.theme.spacing.s8};
   `,
   ExchangeButton: styled(Button)`
+    width: 100%;
     height: 56px;
     margin: ${(props) => `${props.theme.spacing.s32} 0 ${props.theme.spacing.s16} 0`}}; 
   `,
@@ -126,6 +127,26 @@ const St = {
     gap: ${(props) => props.theme.spacing.s8};
     font-size: 18px;
     font-weight: 600;
+  `,
+  ExchangeNoticeContainer: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: ${(props) => props.theme.spacing.s16};
+    padding: ${(props) => props.theme.spacing.s16};
+    border-radius: ${(props) => props.theme.radius.s12};
+    background-color: ${(props) => props.theme.colors.info24};
+
+    & div {
+      display: flex;
+      align-items: center;
+      gap: ${(props) => props.theme.spacing.s8};
+    }
+  `,
+  ExchangeNoticeText: styled.span`
+    font-size: 15px;
+    font-weight: 400;
+    color: ${(props) => props.theme.colors.infoFont};
   `,
 }
 export default St

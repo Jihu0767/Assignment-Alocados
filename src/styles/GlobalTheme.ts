@@ -15,6 +15,7 @@ export const GlobalTheme = {
     shade700: '#404E71',
     shade900: '#2A3249',
 
+    infoFont: '#3756E4',
     info24: '#3756E43D',
 
     error100: '#F7254B',

@@ -3,7 +3,7 @@ import { ExchangeCoinType, ExchangeUnitType } from '../../types/exchange/exchang
 import { ExchangeRates } from 'static/exchangeRate'
 
 interface ExchangeHistoriesType {
-  date: Date
+  date: string
   sourceCoinName: ExchangeCoinType
   sourceCoinAmount: number
   targetCoinName: ExchangeCoinType
@@ -18,6 +18,7 @@ interface ExchangeStateType {
     amount: number
   }[]
   exchangeHistories: ExchangeHistoriesType[]
+  visibleExchangeNotice: boolean
 }
 
 const initialState: ExchangeStateType = {
@@ -42,6 +43,7 @@ const initialState: ExchangeStateType = {
     },
   ],
   exchangeHistories: [],
+  visibleExchangeNotice: false,
 }
 
 const exchangeSlice = createSlice({
@@ -82,9 +84,15 @@ const exchangeSlice = createSlice({
       const nextHistory = {
         ...action.payload,
       }
-      state.exchangeHistories = [...histories, nextHistory]
+      state.exchangeHistories = [nextHistory, ...histories]
+    },
+    setVisibleExchangeNotice(state) {
+      state.visibleExchangeNotice = true
+    },
+    hideExchangeNotice(state) {
+      state.visibleExchangeNotice = false
     },
   },
 })
-export const { currencyExchange } = exchangeSlice.actions
+export const { currencyExchange, addHistory, setVisibleExchangeNotice, hideExchangeNotice } = exchangeSlice.actions
 export default exchangeSlice.reducer

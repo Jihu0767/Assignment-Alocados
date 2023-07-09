@@ -13,9 +13,6 @@ const MyCoinList = () => {
         {coinList.map((item) => {
           return <MyCoinListItem key={item.id} coinName={item.name} amount={item.amount} />
         })}
-        {/*<MyCoinListItem></MyCoinListItem>*/}
-        {/*<MyCoinListItem></MyCoinListItem>*/}
-        {/*<MyCoinListItem></MyCoinListItem>*/}
       </St.MyCoinList>
     </St.MyCoinListContainer>
   )

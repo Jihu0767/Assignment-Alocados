@@ -51,9 +51,9 @@ const Trigger = ({ children }: PropsWithChildren) => {
   const context = useDropdownContext()
   const { isOpen, handleOpen, handleClose } = context
   return (
-    <St.ListTrigger onClick={!isOpen ? handleOpen : handleClose}>
+    <St.ListTrigger onClick={!isOpen ? handleOpen : handleClose} $isOpen={isOpen}>
       {children}
-      <DropDownIcon />
+      <DropDownIcon className={'drop-down-icon'} />
     </St.ListTrigger>
   )
 }

@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const St = {
   DropDownWrapper: styled.div`
     position: relative;
     height: 100%;
   `,
-  ListTrigger: styled.div`
+  ListTrigger: styled.div<{ $isOpen: boolean }>`
     position: relative;
     width: 100%;
     height: 100%;
@@ -15,6 +15,15 @@ const St = {
     border-radius: ${(props) => props.theme.radius.s12};
     background-color: ${(props) => props.theme.colors.shade100};
     cursor: pointer;
+
+    & .drop-down-icon {
+      transition: 0.21s ease-in-out;
+      ${(props) =>
+        props.$isOpen &&
+        css`
+          transform: rotate(180deg);
+        `};
+    }
   `,
   List: styled.div`
     position: absolute;

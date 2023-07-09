@@ -15,7 +15,7 @@ const Button = (
     className,
     children,
     disabled,
-    background = 'primary100',
+    background,
     ...rest
   }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>,
   ref?: Ref<HTMLButtonElement>
@@ -32,10 +32,9 @@ const Button = (
 export default memo(forwardRef(Button))
 
 const St = {
-  Button: styled.button<{ $background: ColorsType }>`
-    width: 100%;
+  Button: styled.button<{ $background?: ColorsType }>`
     text-align: center;
-    background-color: ${(props) => props.theme.colors[props.$background]};
+    background-color: ${(props) => (props.$background ? props.theme.colors[props.$background] : 'transparent')};
     color: ${(props) => props.theme.colors.white};
     border: none;
     border-radius: ${(props) => props.theme.radius.s12};
