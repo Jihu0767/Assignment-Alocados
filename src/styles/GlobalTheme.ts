@@ -13,9 +13,11 @@ export const GlobalTheme = {
     shade400: '#A9B0C1',
     shade600: '#546182',
     shade700: '#404E71',
-
     shade900: '#2A3249',
+
     info24: '#3756E43D',
+
+    error100: '#F7254B',
   },
   spacing: {
     s8: '8px',

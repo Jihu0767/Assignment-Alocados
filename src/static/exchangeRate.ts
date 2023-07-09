@@ -4,7 +4,7 @@ interface ExchangeRatesType {
   [sourceCoin: string]: Partial<Record<ExchangeCoinType, number>>
 }
 
-export const exchangeRates: ExchangeRatesType = {
+export const ExchangeRates: ExchangeRatesType = {
   // Ethereum 1개는 Solana 100개 BnB는 50개
   Ethereum: {
     Solana: 100,

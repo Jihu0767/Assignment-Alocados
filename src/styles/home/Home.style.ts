@@ -6,6 +6,12 @@ const St = {
     display: flex;
     gap: ${(props) => props.theme.spacing.s16};
   `,
+  HomeTitle: styled.h1`
+    margin-bottom: ${(props) => props.theme.spacing.s24};
+    font-size: 22px;
+    font-weight: 700;
+    color: ${(props) => props.theme.colors.shade900};
+  `,
   // -------------- 지갑 --------------
   MyCoinListContainer: styled.article`
     flex: 1 1 30%;
@@ -89,6 +95,12 @@ const St = {
     align-items: center;
     justify-content: center;
     gap: ${(props) => props.theme.spacing.s24};
+  `,
+  DropDownItemInfo: styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: ${(props) => props.theme.spacing.s8};
   `,
   ExchangeButton: styled(Button)`
     height: 56px;

@@ -5,10 +5,13 @@ import React from 'react'
 
 const HomeTemplate = () => {
   return (
-    <St.HomeContainer>
-      <MyCoinList />
-      <ExchangeForm />
-    </St.HomeContainer>
+    <>
+      <St.HomeTitle>환전하기</St.HomeTitle>
+      <St.HomeContainer>
+        <MyCoinList />
+        <ExchangeForm />
+      </St.HomeContainer>
+    </>
   )
 }
 

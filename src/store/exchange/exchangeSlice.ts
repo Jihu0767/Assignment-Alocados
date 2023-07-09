@@ -1,6 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ExchangeCoinType, ExchangeUnitType } from '../../types/exchange/exchange.type'
-import { exchangeRates } from 'static/exchangeRate'
+import { ExchangeRates } from 'static/exchangeRate'
+
+interface ExchangeHistoriesType {
+  date: Date
+  sourceCoinName: ExchangeCoinType
+  sourceCoinAmount: number
+  targetCoinName: ExchangeCoinType
+  resultAmount: number
+}
 
 interface ExchangeStateType {
   coinList: {
@@ -9,6 +17,7 @@ interface ExchangeStateType {
     unit: ExchangeUnitType
     amount: number
   }[]
+  exchangeHistories: ExchangeHistoriesType[]
 }
 
 const initialState: ExchangeStateType = {
@@ -32,6 +41,7 @@ const initialState: ExchangeStateType = {
       amount: 1000,
     },
   ],
+  exchangeHistories: [],
 }
 
 const exchangeSlice = createSlice({
@@ -43,7 +53,7 @@ const exchangeSlice = createSlice({
       action: PayloadAction<{ sourceCoin: ExchangeCoinType; targetCoin: ExchangeCoinType; amount: number }>
     ) {
       const { sourceCoin, targetCoin, amount } = action.payload
-      const rate = exchangeRates[sourceCoin][targetCoin] as number
+      const rate = ExchangeRates[sourceCoin][targetCoin] as number
       const convertedAmount = amount * rate
 
       const updatedCoinList = state.coinList.map((coin) => {
@@ -66,6 +76,13 @@ const exchangeSlice = createSlice({
         ...state,
         coinList: updatedCoinList,
       }
+    },
+    addHistory(state, action: PayloadAction<ExchangeHistoriesType>) {
+      const histories = [...state.exchangeHistories]
+      const nextHistory = {
+        ...action.payload,
+      }
+      state.exchangeHistories = [...histories, nextHistory]
     },
   },
 })

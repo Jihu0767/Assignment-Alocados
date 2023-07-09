@@ -1,9 +1,10 @@
 import React, { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from 'react'
 import St from 'styles/common/Select.style'
+import { ReactComponent as DropDownIcon } from 'assets/icons/DropDownIcon.svg'
 
 interface DropdownContextValue {
   isOpen: boolean
-  select: string
+  selected: any
   handleOpen: () => void
   handleClose: () => void
   handleSelctAndClose: (item: string) => void
@@ -11,37 +12,37 @@ interface DropdownContextValue {
 
 const DropdownContext = createContext<DropdownContextValue | null>(null)
 
-interface Props {
-  value: string
+interface Props<T> {
+  value: T
   className?: string
-  onChange: React.Dispatch<React.SetStateAction<string>>
+  onChange: (item: T) => void
 }
 
-export function Dropdown({ value, children, className, onChange }: PropsWithChildren<Props>) {
+export function Dropdown<T>({ value, children, className, onChange }: PropsWithChildren<Props<T>>) {
   const [isOpen, setIsOpen] = useState(false)
-  const [select, setSelect] = useState(value)
-
+  const [selected, setSelected] = useState(value)
   const firstMounded = useRef(true)
+
   useEffect(() => {
     if (!firstMounded.current) {
-      onChange(select)
+      onChange(selected as T)
     }
     firstMounded.current = false
-  }, [select])
+  }, [selected])
 
   const handleOpen = () => {
     setIsOpen(true)
   }
 
-  const handleClose = (item?: string) => {
+  const handleClose = () => {
     setIsOpen(false)
   }
-  const handleSelctAndClose = (item: string) => {
+  const handleSelctAndClose = (item: T | string) => {
     handleClose()
-    setSelect(item)
+    setSelected(item as T)
   }
   return (
-    <DropdownContext.Provider value={{ isOpen, select, handleOpen, handleClose, handleSelctAndClose }}>
+    <DropdownContext.Provider value={{ isOpen, selected, handleOpen, handleClose, handleSelctAndClose }}>
       <St.DropDownWrapper className={className}>{children}</St.DropDownWrapper>
     </DropdownContext.Provider>
   )
@@ -49,7 +50,12 @@ export function Dropdown({ value, children, className, onChange }: PropsWithChil
 const Trigger = ({ children }: PropsWithChildren) => {
   const context = useDropdownContext()
   const { isOpen, handleOpen, handleClose } = context
-  return <St.ListTrigger onClick={!isOpen ? handleOpen : handleClose}>{children}</St.ListTrigger>
+  return (
+    <St.ListTrigger onClick={!isOpen ? handleOpen : handleClose}>
+      {children}
+      <DropDownIcon />
+    </St.ListTrigger>
+  )
 }
 
 const Menu = ({ children }: PropsWithChildren) => {
@@ -60,10 +66,11 @@ const Menu = ({ children }: PropsWithChildren) => {
   return <St.List>{children}</St.List>
 }
 
-const Item = ({ value, children }: PropsWithChildren<{ value: string }>) => {
-  const { handleSelctAndClose, select } = useDropdownContext()
+const Item = ({ value, disabled, children }: PropsWithChildren<{ value: string; disabled?: boolean }>) => {
+  const { handleSelctAndClose, selected } = useDropdownContext()
+
   return (
-    <St.Item $isSelect={select === value} onClick={() => handleSelctAndClose(value)}>
+    <St.Item $isSelect={selected === value} onClick={() => handleSelctAndClose(value)} $isDisabled={disabled}>
       {children}
     </St.Item>
   )

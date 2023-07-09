@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, PropsWithChildren, Ref } from 'react'
+import React, { ButtonHTMLAttributes, forwardRef, InputHTMLAttributes, memo, PropsWithChildren, Ref } from 'react'
 import styled from 'styled-components'
 import { ColorsType } from 'styles/GlobalTheme'
 
@@ -10,7 +10,14 @@ type ButtonProps = PropsWithChildren<{
 }>
 
 const Button = (
-  { type = 'button', className, children, disabled, background = 'primary100', ...rest }: ButtonProps,
+  {
+    type = 'button',
+    className,
+    children,
+    disabled,
+    background = 'primary100',
+    ...rest
+  }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>,
   ref?: Ref<HTMLButtonElement>
 ) => {
   return (
