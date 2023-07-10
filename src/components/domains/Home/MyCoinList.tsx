@@ -1,4 +1,4 @@
-import St from 'styles/home/Home.style'
+import St from 'styles/pages/home/Home.style'
 import MyCoinListItem from './MyCoinListItem'
 import { useAppSelector } from 'hooks/redux/useAppSelector'
 

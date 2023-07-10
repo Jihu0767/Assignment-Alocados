@@ -9,7 +9,14 @@ const useInput = (initValue: string) => {
     setValue(e.target.value)
   }, [])
 
-  return [value, setValue, handler] as const
+  const onlyNumberHandler = useCallback<HandlerType>((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isNaN(Number(e.target.value))) {
+      return
+    }
+    setValue(e.target.value)
+  }, [])
+
+  return { value, setValue, handler, onlyNumberHandler } as const
 }
 
 export default useInput

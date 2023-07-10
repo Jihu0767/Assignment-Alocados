@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import St from 'styles/home/Home.style'
-import CoinToIcon from 'components/common/CoinToIcon'
+import St from 'styles/pages/home/Home.style'
+import CoinToIcon from 'components/CoinToIcon'
 import { ExchangeCoinType } from 'types/exchange/exchange.type'
 import { commaFormat } from 'utils/formatUtil'
 import { CoinNameToUnit } from 'static/coinNameToUnit'

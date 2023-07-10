@@ -6,7 +6,7 @@ import { GlobalTheme } from 'styles/GlobalTheme'
 import Layout from 'components/Layout/Layout'
 import Home from 'pages/Home'
 import TransHistories from 'pages/TransHistories'
-import Header from './components/common/Header'
+import Header from './components/Header'
 
 function App() {
   return (

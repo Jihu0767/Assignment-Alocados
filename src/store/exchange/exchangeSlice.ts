@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ExchangeCoinType, ExchangeUnitType } from '../../types/exchange/exchange.type'
+import { ExchangeCoinType, ExchangeUnitType } from 'types/exchange/exchange.type'
 import { ExchangeRates } from 'static/exchangeRate'
 
 export interface ExchangeHistoriesType {

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Button from '../../components/common/buttons/Button'
+import Button from 'components/common/buttons/Button'
 
 const St = {
   HomeContainer: styled.section`

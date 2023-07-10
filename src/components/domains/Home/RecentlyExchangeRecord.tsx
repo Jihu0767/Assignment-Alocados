@@ -1,5 +1,5 @@
 import { useAppSelector } from 'hooks/redux/useAppSelector'
-import RecentlyExchangeRow from '../../common/RecentlyExchangeRow'
+import RecentlyExchangeRow from 'components/RecentlyExchangeRow'
 
 const RecentlyExchangeRecord = () => {
   const { exchangeHistories } = useAppSelector((state) => state.exchangeReducer)

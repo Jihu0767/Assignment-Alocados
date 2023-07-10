@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAppSelector } from 'hooks/redux/useAppSelector'
-import RecentlyExchangeRow from '../../common/RecentlyExchangeRow'
-import St from 'styles/transdetail/TransDetail.style'
+import RecentlyExchangeRow from 'components/RecentlyExchangeRow'
+import St from 'styles/pages/transdetail/TransDetail.style'
 import { ReactComponent as SortIcon } from 'assets/icons/SortIcon.svg'
 
 type ExchangeHistorySortType = 'desc' | 'asce'

@@ -1,9 +1,9 @@
 import React from 'react'
-import St from 'styles/home/Home.style'
+import St from 'styles/pages/home/Home.style'
 import MyCoinList from './MyCoinList'
 import ExchangeForm from './ExchangeForm'
 import ExchangeNotice from './ExchangeNotice'
-import PageTitle from 'components/common/PageTitle'
+import PageTitle from 'components/PageTitle'
 
 const HomeTemplate = () => {
   return (

@@ -1,5 +1,5 @@
-import PageTitle from 'components/common/PageTitle'
-import St from 'styles/transdetail/TransDetail.style'
+import PageTitle from 'components/PageTitle'
+import St from 'styles/pages/transdetail/TransDetail.style'
 import TransHistoryList from './TransHistoryList'
 
 const TransHistoriesTemplate = () => {

@@ -1,5 +1,5 @@
-import React, { ButtonHTMLAttributes, forwardRef, InputHTMLAttributes, memo, PropsWithChildren, Ref } from 'react'
-import styled from 'styled-components'
+import React, { ButtonHTMLAttributes, forwardRef, memo, PropsWithChildren, Ref } from 'react'
+import St from 'styles/components/common/Button.style'
 import { ColorsType } from 'styles/GlobalTheme'
 
 type ButtonProps = PropsWithChildren<{
@@ -30,22 +30,3 @@ const Button = (
 }
 
 export default memo(forwardRef(Button))
-
-const St = {
-  Button: styled.button<{ $background?: ColorsType }>`
-    text-align: center;
-    background-color: ${(props) => (props.$background ? props.theme.colors[props.$background] : 'transparent')};
-    color: ${(props) => props.theme.colors.white};
-    border: none;
-    border-radius: ${(props) => props.theme.radius.s12};
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.75px;
-    cursor: pointer;
-    &:disabled {
-      background-color: ${(props) => props.theme.colors.shade200};
-      color: ${(props) => props.theme.colors.shade400};
-      cursor: not-allowed;
-    }
-  `,
-}

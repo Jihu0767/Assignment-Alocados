@@ -1,4 +1,4 @@
-import { ExchangeCoinType, ExchangeUnitType } from '../types/exchange/exchange.type'
+import { ExchangeCoinType, ExchangeUnitType } from 'types/exchange/exchange.type'
 
 export const CoinNameToUnit: Readonly<Record<ExchangeCoinType, ExchangeUnitType>> = {
   Ethereum: 'ETH',
