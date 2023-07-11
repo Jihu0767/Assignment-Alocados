@@ -6,7 +6,7 @@ import CoinToIcon from 'components/CoinToIcon'
 import St from 'styles/components/RecentlyRecordRow.style'
 import { commaFormat } from '../utils/formatUtil'
 
-const RecentlyExchangeRow: FC<ExchangeHistoriesType> = ({
+const RecentlyExchangeRow: FC<Omit<ExchangeHistoriesType, 'id'>> = ({
   targetCoinName,
   sourceCoinName,
   sourceCoinAmount,
@@ -25,7 +25,7 @@ const RecentlyExchangeRow: FC<ExchangeHistoriesType> = ({
         <ArrowRightIcon />
         <St.RecentlyRecordCoin>
           <CoinToIcon coinName={targetCoinName} />
-          <span data-testid={`result-${sourceCoinName}-amount-record`}>{commaFormat(resultAmount, 2)}</span>{' '}
+          <span data-testid={`result-${targetCoinName}-amount-record`}>{commaFormat(resultAmount, 2)}</span>{' '}
           {CoinNameToUnit[targetCoinName]}
         </St.RecentlyRecordCoin>
       </St.RecentlyRecordCoinsWrpaper>

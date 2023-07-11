@@ -40,7 +40,7 @@ const TransHistoryList = () => {
       {sortedHistories.map((item) => {
         return (
           <RecentlyExchangeRow
-            key={item.date}
+            key={item.id}
             date={item.date}
             sourceCoinName={item.sourceCoinName}
             sourceCoinAmount={item.sourceCoinAmount}

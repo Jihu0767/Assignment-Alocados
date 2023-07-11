@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ExchangeCoinType, ExchangeUnitType } from 'types/exchange/exchange.type'
 import { ExchangeRates } from 'static/exchangeRate'
+import { uuidv4 } from '../../utils/uuidUtil'
 
 export interface ExchangeHistoriesType {
+  id: string
   date: string
   sourceCoinName: ExchangeCoinType
   sourceCoinAmount: number
@@ -81,7 +83,7 @@ const exchangeSlice = createSlice({
     },
     addHistory(state, action: PayloadAction<ExchangeHistoriesType>) {
       const histories = [...state.exchangeHistories]
-      const nextHistory = {
+      const nextHistory: ExchangeHistoriesType = {
         ...action.payload,
       }
       state.exchangeHistories = [nextHistory, ...histories]

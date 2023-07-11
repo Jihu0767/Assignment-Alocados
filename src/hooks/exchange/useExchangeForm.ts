@@ -5,6 +5,7 @@ import { getNowDate } from 'utils/dateUtil'
 import { useAppDispatch } from 'hooks/redux/useAppDispatch'
 import useInput from 'hooks/useInput'
 import { ExchangeRates } from '../../static/exchangeRate'
+import { uuidv4 } from '../../utils/uuidUtil'
 
 const useExchangeForm = (initialSelectedCoin: ExchangeCoinType[]) => {
   const dispatch = useAppDispatch()
@@ -38,6 +39,7 @@ const useExchangeForm = (initialSelectedCoin: ExchangeCoinType[]) => {
 
     dispatch(
       addHistory({
+        id: uuidv4(),
         date: getNowDate(),
         sourceCoinName: selectedSourceCoin as ExchangeCoinType,
         sourceCoinAmount: sourceCoinAmount,
