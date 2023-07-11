@@ -39,15 +39,14 @@ const TransHistoryList = () => {
       </St.TransListHead>
       {sortedHistories.map((item) => {
         return (
-          <>
-            <RecentlyExchangeRow
-              date={item.date}
-              sourceCoinName={item.sourceCoinName}
-              sourceCoinAmount={item.sourceCoinAmount}
-              targetCoinName={item.targetCoinName}
-              resultAmount={item.resultAmount}
-            />
-          </>
+          <RecentlyExchangeRow
+            key={item.date}
+            date={item.date}
+            sourceCoinName={item.sourceCoinName}
+            sourceCoinAmount={item.sourceCoinAmount}
+            targetCoinName={item.targetCoinName}
+            resultAmount={item.resultAmount}
+          />
         )
       })}
     </St.TransHistoryList>

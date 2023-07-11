@@ -5,7 +5,7 @@ const St = {
     position: relative;
     height: 100%;
   `,
-  ListTrigger: styled.div<{ $isOpen: boolean }>`
+  ListTrigger: styled.button<{ $isOpen: boolean }>`
     position: relative;
     width: 100%;
     height: 100%;

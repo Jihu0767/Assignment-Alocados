@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useAppSelector } from 'hooks/redux/useAppSelector'
 import { ExchangeCoinType } from 'types/exchange/exchange.type'
 
@@ -23,17 +23,20 @@ const useExchangeValidation = ({
    * 3. 최대 소수점 10번째 자리까지만 입력 가능
    *     - 환전 시 소수점 10번째 자리까지 모두 계산
    */
-  const inputValidation = (value: string) => {
-    const onlyOneDotRegex = /^(?!.*\..*\..*)[^.]*\.?[^.]*$/
-    const decimalLength = /^(?!.*\..{11})[^.]*\.?[^.]{0,10}$/
-    const currentAmount = coinList.filter((item) => item.name === selectedSourceCoin)[0].amount
+  const checkInputInvalid = useCallback(
+    (value: string) => {
+      const onlyOneDotRegex = /^(?!.*\..*\..*)[^.]*\.?[^.]*$/
+      const decimalLength = /^(?!.*\..{11})[^.]*\.?[^.]{0,10}$/
+      const currentAmount = coinList.filter((item) => item.name === selectedSourceCoin)[0].amount
 
-    const validOneDot = onlyOneDotRegex.test(value)
-    const validDecimalLength = decimalLength.test(value)
-    const overflowAmount = Number(value) > currentAmount
+      const validOneDot = onlyOneDotRegex.test(value)
+      const validDecimalLength = decimalLength.test(value)
+      const overflowAmount = Number(value) > currentAmount
 
-    return !validOneDot || !validDecimalLength || overflowAmount
-  }
+      return !validOneDot || !validDecimalLength || overflowAmount
+    },
+    [sourceCoinAmount]
+  )
 
   /**
    * 환전될 갯수가 1보다 작은경우
@@ -41,9 +44,10 @@ const useExchangeValidation = ({
    * 입력된 값이 없는 경우
    * 선택된 코인이 같은 경우
    */
-  const buttonValidation = useMemo(() => {
+  const buttonInvalid = useMemo(() => {
     const targetCoinQty = coinList.filter((item) => item.name === selectedSourceCoin)[0].amount
     const sameSelectedCoin = selectedSourceCoin !== selectedTargetCoin
+
     const isValidButton =
       sourceCoinAmount !== 0 &&
       exchangeResultAmount >= 1 &&
@@ -53,7 +57,7 @@ const useExchangeValidation = ({
     return !isValidButton
   }, [sourceCoinAmount, selectedSourceCoin])
 
-  return { inputValidation, buttonValidation }
+  return { checkInputInvalid, buttonInvalid }
 }
 
 export default useExchangeValidation

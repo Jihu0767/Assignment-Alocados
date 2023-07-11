@@ -20,7 +20,9 @@ const MyCoinListItem: FC<MyCoinListItemProps> = ({ coinName, amount }) => {
         <St.CoinName>{coinName}</St.CoinName>
       </St.SymbolInfo>
       <St.ExchangeAmount>
-        <span className={'amount'}>{commaFormat(amount)}</span>
+        <span data-testid={`${coinName}-coin-amount`} className={'amount'}>
+          {commaFormat(amount)}
+        </span>
         <span className={'unit'}>{CoinNameToUnit[coinName]}</span>
       </St.ExchangeAmount>
     </St.MyCoinListItem>

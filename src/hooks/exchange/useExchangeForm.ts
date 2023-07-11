@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ExchangeCoinType } from 'types/exchange/exchange.type'
 import { addHistory, currencyExchange, setVisibleExchangeNotice } from 'store/exchange/exchangeSlice'
 import { getNowDate } from 'utils/dateUtil'
 import { useAppDispatch } from 'hooks/redux/useAppDispatch'
 import useInput from 'hooks/useInput'
+import { ExchangeRates } from '../../static/exchangeRate'
 
 const useExchangeForm = (initialSelectedCoin: ExchangeCoinType[]) => {
   const dispatch = useAppDispatch()
@@ -16,11 +17,21 @@ const useExchangeForm = (initialSelectedCoin: ExchangeCoinType[]) => {
     onlyNumberHandler: handleSourceCoinAmount,
   } = useInput('')
 
+  const exchangeResultAmount = useMemo(() => {
+    const rate = ExchangeRates[selectedSourceCoin][selectedTargetCoin] as number
+    const targetAmount = Number(sourceCoinAmount) * rate
+    if (selectedSourceCoin === selectedTargetCoin) {
+      return Number(sourceCoinAmount)
+    } else {
+      return targetAmount
+    }
+  }, [sourceCoinAmount, selectedSourceCoin, selectedTargetCoin])
+
   const submitExchange = (sourceCoinAmount: number, exchangeResultAmount: number) => {
     dispatch(
       currencyExchange({
-        sourceCoin: selectedSourceCoin,
-        targetCoin: selectedTargetCoin,
+        sourceCoin: selectedSourceCoin as ExchangeCoinType,
+        targetCoin: selectedTargetCoin as ExchangeCoinType,
         amount: sourceCoinAmount,
       })
     )
@@ -28,9 +39,9 @@ const useExchangeForm = (initialSelectedCoin: ExchangeCoinType[]) => {
     dispatch(
       addHistory({
         date: getNowDate(),
-        sourceCoinName: selectedSourceCoin,
+        sourceCoinName: selectedSourceCoin as ExchangeCoinType,
         sourceCoinAmount: sourceCoinAmount,
-        targetCoinName: selectedTargetCoin,
+        targetCoinName: selectedTargetCoin as ExchangeCoinType,
         resultAmount: exchangeResultAmount,
       })
     )
@@ -46,6 +57,7 @@ const useExchangeForm = (initialSelectedCoin: ExchangeCoinType[]) => {
     sourceCoinAmount,
     handleSourceCoinAmount,
     submitExchange,
+    exchangeResultAmount,
   }
 }
 

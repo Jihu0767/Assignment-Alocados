@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals'
 import App from './App'
 import Store from 'store/store'
+import { GlobalTheme } from './styles/GlobalTheme'
+import { ThemeProvider } from 'styled-components'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
@@ -12,7 +14,9 @@ root.render(
   <React.StrictMode>
     <Provider store={Store}>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={GlobalTheme}>
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

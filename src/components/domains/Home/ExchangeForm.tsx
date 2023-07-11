@@ -18,23 +18,14 @@ const ExchangeForm = () => {
     selectedSourceCoin,
     selectedTargetCoin,
     setSelectedTargetCoin,
-    setSelectedSourceCoin,
     submitExchange,
+    setSelectedSourceCoin,
     sourceCoinAmount,
     handleSourceCoinAmount,
+    exchangeResultAmount,
   } = useExchangeForm([coinList[0].name, coinList[1].name])
 
-  const exchangeResultAmount = useMemo(() => {
-    const rate = ExchangeRates[selectedSourceCoin][selectedTargetCoin] as number
-    const targetAmount = Number(sourceCoinAmount) * rate
-    if (selectedSourceCoin === selectedTargetCoin) {
-      return Number(sourceCoinAmount)
-    } else {
-      return targetAmount
-    }
-  }, [sourceCoinAmount, selectedSourceCoin, selectedTargetCoin])
-
-  const { inputValidation, buttonValidation } = useExchangeValidation({
+  const { checkInputInvalid, buttonInvalid } = useExchangeValidation({
     exchangeResultAmount,
     sourceCoinAmount: Number(sourceCoinAmount),
     selectedSourceCoin,
@@ -47,11 +38,13 @@ const ExchangeForm = () => {
         <St.InputWrapper>
           <Input
             labelText={'전환 수량 (FROM)'}
+            className={`valid-${!checkInputInvalid(sourceCoinAmount)}`}
             wrapperClassName={'amount-input'}
             value={sourceCoinAmount === '0' ? undefined : sourceCoinAmount}
             onChange={handleSourceCoinAmount}
-            isInvalid={inputValidation(sourceCoinAmount)}
+            isInvalid={checkInputInvalid(sourceCoinAmount)}
             placeholder={'0'}
+            data-testid={`source-coin-input`}
           />
           <DropDown<ExchangeCoinType>
             className={'dropdown'}
@@ -59,22 +52,20 @@ const ExchangeForm = () => {
             onChange={setSelectedSourceCoin}
           >
             <DropDown.Trigger>
-              <St.DropDownItemInfo>
-                <CoinToIcon coinName={selectedSourceCoin as ExchangeCoinType} />
+              <St.DropDownItemInfo data-testid={'source-coin-dropdown-trigger'}>
+                <CoinToIcon coinName={selectedSourceCoin} />
                 {selectedSourceCoin}
               </St.DropDownItemInfo>
             </DropDown.Trigger>
-            <DropDown.List>
+            <DropDown.List key={'source-select'}>
               {coinList.map((item) => {
                 return (
-                  <>
-                    <DropDown.Item key={item.id} value={item.name}>
-                      <St.DropDownItemInfo>
-                        <CoinToIcon coinName={item.name} />
-                        {item.name}
-                      </St.DropDownItemInfo>
-                    </DropDown.Item>
-                  </>
+                  <DropDown.Item key={item.id} value={item.name}>
+                    <St.DropDownItemInfo data-testid={`source-coin-item-${item.name}`}>
+                      <CoinToIcon coinName={item.name} />
+                      {item.name}
+                    </St.DropDownItemInfo>
+                  </DropDown.Item>
                 )
               })}
             </DropDown.List>
@@ -91,16 +82,16 @@ const ExchangeForm = () => {
             onChange={setSelectedTargetCoin}
           >
             <DropDown.Trigger>
-              <St.DropDownItemInfo>
-                <CoinToIcon coinName={selectedTargetCoin as ExchangeCoinType} />
+              <St.DropDownItemInfo data-testid={'target-coin-dropdown-trigger'}>
+                <CoinToIcon coinName={selectedTargetCoin} />
                 {selectedTargetCoin}
               </St.DropDownItemInfo>
             </DropDown.Trigger>
             <DropDown.List>
               {coinList.map((item) => {
                 return (
-                  <DropDown.Item key={item.id} value={item.name}>
-                    <St.DropDownItemInfo>
+                  <DropDown.Item key={item.id} value={item.name} data-testid={`source-coin-item-${item.name}`}>
+                    <St.DropDownItemInfo data-testid={`target-coin-item-${item.name}`}>
                       <CoinToIcon coinName={item.name} />
                       {item.name}
                     </St.DropDownItemInfo>
@@ -115,7 +106,7 @@ const ExchangeForm = () => {
         type={'button'}
         background={'primary100'}
         onClick={() => submitExchange(Number(sourceCoinAmount), exchangeResultAmount)}
-        disabled={buttonValidation}
+        disabled={buttonInvalid || checkInputInvalid(sourceCoinAmount)}
       >
         환전
       </St.ExchangeButton>
