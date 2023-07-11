@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# 알로카도스 프론트엔드 엔지니어 지원자 박지후 입니다 :)
+서류를 긍정적으로 검토해 주시고 과제 진행 기회를 주셔서 감사합니다.
+과제에 대한 간단한 리드미 기술 입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+>- 목차
+   >    - 프로젝트 실행
+>    - 구현 기능 및 프로젝트 설명
+>    - 구조 및 설계
+>
+>
+>- 문의메일: [jeehoo0767@naver.com](jeehoo0767@naver.com)
+>- 전화번호: 010-9788-5568
 
-In the project directory, you can run:
+# 🚀 프로젝트 실행
+>- **프로젝트 의존성 설치**
+>```
+>yarn install
+>```
+>- **프로젝트 run server**
+>```
+>yarn start
+>```
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# ✔ 구현 기능
+>- 홈화면
+>  - ✅ 자산 기본값으로 Ethereum, Solana, BnB 각각 1,000개
+>  - ✅ 환전할 코인을 드롭다운으로 선택
+>  - ✅ 선택된 코인에 한해서 드롭다운에서 disabled처리를 하고, 교환이 불가능한 경우 버튼을 disabled처리
+>  - ✅ 환전 시 지갑에 현재 사용자의 코인 별 잔액 변동
+>  - ✅ 지갑 내 잔액은 소수점 최대 10번째 자리까지 표기
+>  - ✅ 지갑 내 잔액 3번쨰 자리마다 콤마 표시
+>  - ✅ Input 입력 조건 - 0일떄, 소유 자산보다 클떄 error처리, 소수점은 1개만 입력 가능
+>  - ✅ 환전 버튼 disabled - Input이 error일 시, 입력된 값이 없는 경우
+>  - ✅ 환전 후 가장 최근에 환전한 내역 요약 - 두번째 자리까지 버림표시, 숫자 3자리마다 콤마 표시
+>
+> 
+>- 환전내역 페이지
+>  - ✅ 환전 금액을 두번째 자리까지 버림으로 계산하여 표시
+>  - ✅ 숫자 3자리마다 콤마 표시
+>  - ✅ A -> B 혀식으로 표시
+>  - ✅ 시간 2323-03-32, AM 10:50 형식으로 표시
+>  - ✅ 시간 내림차순 정렬(기본값)
+>  - ✅ 정렬 버튼 클릭 시 오름차순 / 내림차순 정렬 변경
+>
+> 
+>- ✅ 테스트코드 작성

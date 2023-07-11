@@ -32,30 +32,25 @@ const useExchangeValidation = ({
       const validOneDot = onlyOneDotRegex.test(value)
       const validDecimalLength = decimalLength.test(value)
       const overflowAmount = Number(value) > currentAmount
+      const isZero = value === '0'
 
-      return !validOneDot || !validDecimalLength || overflowAmount
+      return !validOneDot || !validDecimalLength || overflowAmount || isZero
     },
     [sourceCoinAmount]
   )
 
   /**
    * 환전될 갯수가 1보다 작은경우
-   * 코인 선택이 안된경우
    * 입력된 값이 없는 경우
    * 선택된 코인이 같은 경우
    */
   const buttonInvalid = useMemo(() => {
-    const targetCoinQty = coinList.filter((item) => item.name === selectedSourceCoin)[0].amount
     const sameSelectedCoin = selectedSourceCoin !== selectedTargetCoin
 
-    const isValidButton =
-      sourceCoinAmount !== 0 &&
-      exchangeResultAmount >= 1 &&
-      targetCoinQty >= Number(sourceCoinAmount) &&
-      sameSelectedCoin
+    const isValidButton = sourceCoinAmount !== 0 && exchangeResultAmount >= 1 && sameSelectedCoin
 
     return !isValidButton
-  }, [sourceCoinAmount, selectedSourceCoin])
+  }, [sourceCoinAmount, selectedSourceCoin, exchangeResultAmount])
 
   return { checkInputInvalid, buttonInvalid }
 }

@@ -34,7 +34,7 @@ const St = {
 
     &::placeholder {
       font-weight: 600;
-      color: ${(props) => props.theme.colors.shade900};
+      color: ${(props) => props.theme.colors.shade300};
     }
   `,
 }

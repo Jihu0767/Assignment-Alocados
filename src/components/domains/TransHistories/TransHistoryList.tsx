@@ -29,9 +29,9 @@ const TransHistoryList = () => {
   return (
     <St.TransHistoryList>
       <St.TransListHead>
-        <St.HeadColumn>
+        <St.HeadColumn onClick={toggleSort}>
           <span className={'exchange-date'}>환전시간</span>
-          <St.SortButton type={'button'} $isAsce={sort === 'asce'} onClick={toggleSort}>
+          <St.SortButton type={'button'} $isAsce={sort === 'asce'}>
             <SortIcon />
           </St.SortButton>
         </St.HeadColumn>

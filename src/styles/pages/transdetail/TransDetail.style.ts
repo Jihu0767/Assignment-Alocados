@@ -26,7 +26,7 @@ const St = {
   HeadColumn: styled.div`
     display: flex;
     align-items: center;
-
+    cursor: pointer;
     & > span.exchange-date {
       font-weight: 700;
     }
